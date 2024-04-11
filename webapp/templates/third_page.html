@@ -9,39 +9,121 @@
             margin: 0;
             padding: 0;
             font-family: Arial, sans-serif;
-            background-color: #1f1f1f;
+            background-image: url('static/images/background1.png'); /* Add your background image URL here */
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
             color: white;
+            height: 100vh; /* Set the height of the body to fill the viewport */
+            overflow: hidden; /* Prevent scrolling */
         }
 
         .text-box {
             position: absolute;
             padding: 10px;
-            overflow-y: auto;
-            background-color: #333333;
+            overflow-y: auto; /* Enable scrolling */
+            background-color: rgba(51, 51, 51, 0.8);
             border-radius: 20px;
             white-space: pre-wrap;
             max-height: 90%;
+            max-width: 60%;
+        }
+
+        .textbox {
+            position: absolute;
+            padding: 10px;
+            background-color: rgba(51, 51, 51, 0.8); 
+            border-radius: 20px;
+            color: white;
+            resize: none; 
+            border: none; 
+            width: 30%; 
+            height: 5%; 
+            font-size: 20px; 
         }
 
         #passageBox {
-            left: 10px;
+            left: 3%;
             top: 5%;
-            width: 40%;
+            width: 70%;
             height: 90%;
         }
 
         #questionsBox {
-            left: 50%;
+            left: 75.5%;
             top: 5%;
-            width: 40%;
-            height: 90%;
-            transform: translateX(-50%);
+            width: 30%;
+            height: 50%;
+            transform: translateX(-30%);
+        }
+
+        /* Hide the scrollbar */
+        .text-box::-webkit-scrollbar {
+            display: none;
+        }
+
+        #nextPageButton {
+            position: absolute;
+            left: 78%;
+            top: 90%;
+            padding: 10px 20px;
+            background-color: rgba(51, 51, 51, 0.8);
+            border-radius: 20px;
+            border: none;
+            color: white;
+            cursor: pointer;
+        }
+
+        #nextPageButton:hover {
+            background-color: rgba(51, 51, 51, 1);
+        }
+
+        /* Popup styles */
+        .popup-container {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            z-index: 9999;
+        }
+
+        .popup-content {
+            color: white;
+        }
+
+        .close-button {
+            background-color: rgba(51, 51, 51, 0.8);
+            border-radius: 10px;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
         }
     </style>
 </head>
 <body>
     <div id="passageBox" class="text-box"></div>
     <div id="questionsBox" class="text-box"></div>
+
+    <!-- Text boxes -->
+    <textarea id="textBox1" class="textbox" style="left: 66%; top: 60%;"></textarea>
+    <textarea id="textBox2" class="textbox" style="left: 66%; top: 70%;"></textarea>
+    <textarea id="textBox3" class="textbox" style="left: 66%; top: 80%;"></textarea>
+
+    <!-- Next page button -->
+    <button id="nextPageButton">Next page</button>
+
+    <!-- Popup container -->
+    <div class="popup-container" id="popupContainer">
+        <div class="popup-content">
+            <h2>Your Marks</h2>
+            <p id="marksInfo"></p>
+            <button class="close-button" id="closeButton">Close</button>
+        </div>
+    </div>
 
     <script>
         // Function to fetch text from file
@@ -54,7 +136,7 @@
 
         // Function to display passage text
         function displayPassageText() {
-            fetchTextFromFile('static/paragraphs/main_description.txt', function(text) {
+            fetchTextFromFile('static/paragraphs/reading_passage.txt', function(text) {
                 document.getElementById('passageBox').innerText = text;
             });
         }
@@ -69,6 +151,43 @@
         // Call the functions to display text
         displayPassageText();
         displayQuestionsText();
+
+        // Function to calculate marks
+        function calculateMarks() {
+            const answer1 = document.getElementById('textBox1').value.trim().toUpperCase();
+            const answer2 = document.getElementById('textBox2').value.trim().toUpperCase();
+            const answer3 = document.getElementById('textBox3').value.trim().toUpperCase();
+            let correctAnswers = 0;
+
+            // Check answers and count correct ones
+            if (answer1 === 'TRUE') {
+                correctAnswers++;
+            }
+            if (answer2 === 'FALSE') {
+                correctAnswers++;
+            }
+            if (answer3 === 'TRUE') {
+                correctAnswers++;
+            }
+
+            // Calculate marks
+            const marks = (correctAnswers / 3) * 100;
+
+            // Display marks in the popup box
+            const marksInfo = `Correct Answers: ${correctAnswers} out of 3<br>Marks: ${marks}%`;
+            document.getElementById('marksInfo').innerHTML = marksInfo;
+
+            // Show the popup
+            document.getElementById('popupContainer').style.display = 'block';
+        }
+
+        // Close popup
+        document.getElementById('closeButton').addEventListener('click', () => {
+            document.getElementById('popupContainer').style.display = 'none';
+        });
+
+        // Attach event listener to Next page button
+        document.getElementById('nextPageButton').addEventListener('click', calculateMarks);
     </script>
 </body>
 </html>
