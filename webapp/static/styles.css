@@ -1,0 +1,83 @@
+/* styles.css */
+
+/* Style for the container */
+.container {
+    display: flex;
+    justify-content: center; /* Aligns the content horizontally */
+    align-items: center; /* Aligns the content vertically */
+    height: 100vh; /* Sets the container to full height of the viewport */
+  }
+  
+  /* Style for the left panel */
+  .left-panel {
+    flex: 1; /* Takes up 50% of the container width */
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+    align-items: center; /* Align items horizontally */
+  }
+  
+  /* Style for the right panel */
+  .right-panel {
+    flex: 1; /* Takes up 50% of the container width */
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+    align-items: center; /* Align items horizontally */
+  }
+  
+  /* Style for buttons */
+  .button {
+    margin: 10px; /* Adds space between buttons */
+    padding: 15px 30px; /* Adds padding inside buttons */
+    font-size: 16px; /* Sets font size */
+    border: none; /* Removes button border */
+    border-radius: 5px; /* Rounds button corners */
+    background-color: #007bff; /* Sets button background color */
+    color: white; /* Sets button text color */
+    cursor: pointer; /* Changes cursor to pointer on hover */
+  }
+  
+  .button:hover {
+    background-color: #0056b3; /* Darkens button background color on hover */
+  }
+  
+  /* Style for stopwatch */
+  .stopwatch {
+    font-size: 24px; /* Sets font size */
+    margin-bottom: 20px; /* Adds space below stopwatch */
+    text-align: center; /* Centers text */
+  }
+  
+  /* styles.css */
+
+/* Style for the container */
+.container {
+  display: flex;
+  justify-content: center; /* Aligns the content horizontally */
+  align-items: center; /* Aligns the content vertically */
+  height: 100vh; /* Sets the container to full height of the viewport */
+}
+
+/* Style for centering text boxes and buttons */
+.center {
+  display: flex;
+  flex-direction: column; /* Stack items vertically */
+  align-items: center; /* Align items horizontally */
+}
+
+/* Style for buttons */
+.button {
+  margin: 10px; /* Adds space between buttons */
+  padding: 15px 30px; /* Adds padding inside buttons */
+  font-size: 16px; /* Sets font size */
+  border: none; /* Removes button border */
+  border-radius: 5px; /* Rounds button corners */
+  background-color: #007bff; /* Sets button background color */
+  color: white; /* Sets button text color */
+  cursor: pointer; /* Changes cursor to pointer on hover */
+}
+
+.button:hover {
+  background-color: #0056b3; /* Darkens button background color on hover */
+}
+
+

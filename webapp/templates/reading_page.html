@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reading Page</title>
+  <!-- Include your CSS file -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='webapp/static/styles.css') }}">
+  <style>
+    body {
+      background-image: url("{{ url_for('static', filename='images/background1.png') }}");
+      background-size: cover;
+      background-repeat: no-repeat;
+      height: 100vh; /* Adjust as needed */
+      margin: 0;
+      padding: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- User ID input -->
+    <div>
+      <label for="userId">User ID:</label>
+      <input type="text" id="userId" name="userId">
+    </div>
+    <!-- Name input -->
+    <div>
+      <label for="userName">Name:</label>
+      <input type="text" id="userName" name="userName">
+    </div>
+    <!-- Add User button -->
+    <button id="addUserBtn">Add User</button>
+    <!-- Status message -->
+    <div id="statusMessage"></div>
+    <!-- Next button -->
+    <button id="nextButton">Next</button>
+  </div>
+  <!-- Include your JavaScript file -->
+  <script src="webapp/static/reading_script.js"></script>
+  <script>
+    document.getElementById("nextButton").addEventListener("click", function() {
+      // Redirect to the third page
+      window.location.href = "third_page";
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IELTS Exam Support</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  <style>
+    body {
+      background-image: url("{{ url_for('static', filename='images/background1.png') }}");
+      background-size: cover;
+      background-repeat: no-repeat;
+      height: 100vh; /* Adjust as needed */
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      position: relative;
+    }
+    .button-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      margin: 0 20px;
+    }
+    .button {
+      margin: 10px;
+    }
+    .description {
+      text-align: center;
+      color: white;
+      background-color: rgba(0, 0, 0, 0.5);
+      border-radius: 15px;
+      padding: 60px;
+      margin: 150px;
+      position: absolute;
+      top: 30%;
+      right: 40%;
+      transform: translate(50%, -50%);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="left-panel">
+      <div id="stopwatch" class="stopwatch">00:00:00</div>
+      <button id="startStopButton" class="button">Start</button>
+      <button id="resetButton" class="button">Reset</button>
+      <button id="listenButton" class="button">Listen</button>
+    </div>
+    <div class="right-panel">
+      <div class="button-container">
+        <!-- Modified form to send a GET request to the /reading route -->
+        <form action="/reading" method="GET">
+            <button class="button" id="readingButton">Reading</button>
+        </form>
+        <button class="button" id="listeningButton">Listening</button>
+      </div>
+      <div class="button-container">
+        <button class="button" id="writingButton">Writing</button>
+        <button class="button" id="speakingButton">Speaking</button>
+      </div>
+    </div>
+  </div>
+  <div id="descriptionLabel" class="description"></div>
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+  <script>
+    document.getElementById("startStopButton").click();
+  </script>
+</body>
+</html>

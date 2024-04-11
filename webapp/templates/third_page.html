@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reading Passage and Questions</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #1f1f1f;
+            color: white;
+        }
+
+        .text-box {
+            position: absolute;
+            padding: 10px;
+            overflow-y: auto;
+            background-color: #333333;
+            border-radius: 20px;
+            white-space: pre-wrap;
+            max-height: 90%;
+        }
+
+        #passageBox {
+            left: 10px;
+            top: 5%;
+            width: 40%;
+            height: 90%;
+        }
+
+        #questionsBox {
+            left: 50%;
+            top: 5%;
+            width: 40%;
+            height: 90%;
+            transform: translateX(-50%);
+        }
+    </style>
+</head>
+<body>
+    <div id="passageBox" class="text-box"></div>
+    <div id="questionsBox" class="text-box"></div>
+
+    <script>
+        // Function to fetch text from file
+        function fetchTextFromFile(filePath, callback) {
+            fetch(filePath)
+                .then(response => response.text())
+                .then(data => callback(data))
+                .catch(error => console.error('Error fetching text:', error));
+        }
+
+        // Function to display passage text
+        function displayPassageText() {
+            fetchTextFromFile('static/paragraphs/main_description.txt', function(text) {
+                document.getElementById('passageBox').innerText = text;
+            });
+        }
+
+        // Function to display questions text
+        function displayQuestionsText() {
+            fetchTextFromFile('static/paragraphs/questions.txt', function(text) {
+                document.getElementById('questionsBox').innerText = text;
+            });
+        }
+
+        // Call the functions to display text
+        displayPassageText();
+        displayQuestionsText();
+    </script>
+</body>
+</html>
